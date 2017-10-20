@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SampleApp.Behaviors"
+             x:Class="SampleApp.View.RegistrationPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Entry x:Name="UserNameEntry"
+                   Placeholder="Name"
+                   Text="{Binding Name}"/>
+            <Entry x:Name="EmailEntry"
+                   Placeholder="Email"
+                   Text="{Binding Email}">
+                <Entry.Behaviors>
+                    <local:EmailValidatorBehavior/>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Entry x:Name="MobileNumberEntry"
+                       Placeholder="Mobile Number"
+                   Text="{Binding Mobile}">
+                <Entry.Behaviors>
+                    <local:NumberValidatorBehavior/>
+                    <local:LengthValidatorBehavior/>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Entry x:Name="PasswordEntry"
+                       Placeholder="Password">
+                <Entry.Behaviors>
+                    <local:PasswordValidatorBehavior/>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Entry x:Name="ConfirmPasswordEntry"
+                  Placeholder="Confirm Password" 
+                  Text="{Binding Password}" >
+                <Entry.Behaviors>
+                    <local:PasswordValidatorBehavior/>
+                    
+                </Entry.Behaviors>
+            </Entry>
+            
+            <StackLayout Orientation="Horizontal"
+                         Padding="20">
+                <Picker x:Name="NationalityPicker"
+                        Title="Nationality"
+                         SelectedIndexChanged="NationalityPicker_SelectedIndexChanged"
+                       />
+                <Picker x:Name="StatesPicker"
+                        Title="State"
+                        ItemsSource="{Binding StateNames}"
+                        ItemDisplayBinding="{Binding state}"
+                        />
+            </StackLayout>
+            <Button x:Name="RegisterButton"
+                    Text="Register"
+                    Clicked="RegisterButton_Clicked"
+                    BackgroundColor="Green"
+                    TextColor="White"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
